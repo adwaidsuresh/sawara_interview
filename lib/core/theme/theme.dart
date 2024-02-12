@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sawara_interview/core/theme%20/color_palette/color_palette.dart';
-import 'package:sawara_interview/core/theme%20/extensions/colors_extension.dart';
-import 'package:sawara_interview/core/theme%20/extensions/shadow_extension.dart';
-import 'package:sawara_interview/core/theme%20/extensions/space_extension.dart';
-import 'package:sawara_interview/core/theme%20/extensions/typography_extension.dart';
+import 'package:sawara_interview/core/theme/color_palette/color_palette.dart';
+import 'package:sawara_interview/core/theme/extensions/colors_extension.dart';
+import 'package:sawara_interview/core/theme/extensions/shadow_extension.dart';
+import 'package:sawara_interview/core/theme/extensions/space_extension.dart';
+import 'package:sawara_interview/core/theme/extensions/typography_extension.dart';
 
 part 'theme.g.dart';
 
