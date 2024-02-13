@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dark_theme.dart';
+part of 'login_providers.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appDarkThemeHash() => r'70050f9a6b6f4f72d742c9f540d26eb5adddf55a';
+String _$loginHash() => r'325bff9c2875c71c5515912db1655e8e11fff186';
 
-/// See also [appDarkTheme].
-@ProviderFor(appDarkTheme)
-final appDarkThemeProvider = AutoDisposeProvider<ThemeData>.internal(
-  appDarkTheme,
-  name: r'appDarkThemeProvider',
+/// See also [Login].
+@ProviderFor(Login)
+final loginProvider = AutoDisposeNotifierProvider<Login, Object?>.internal(
+  Login.new,
+  name: r'loginProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appDarkThemeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$loginHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AppDarkThemeRef = AutoDisposeProviderRef<ThemeData>;
+typedef _$Login = AutoDisposeNotifier<Object?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

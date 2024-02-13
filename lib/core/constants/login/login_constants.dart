@@ -3,8 +3,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'login_constants.g.dart';
 
 class LoginConstants {
-  final txtpromilio = 'Promilo';
-  final txtwelcome = 'Hi,Welcome Back';
+  final txtpromilio = 'promilo';
+  final txtwelcome = 'Hi,Welcome Back!';
   final txtsignin = 'Sign In With OTP';
   final txtpasswrod = 'Forget Password';
   final txtSubmit = 'Submit';

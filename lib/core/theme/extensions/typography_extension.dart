@@ -82,7 +82,11 @@ class AppTypographyExtension extends ThemeExtension<AppTypographyExtension> {
         pBlockQuote = TextStyle(
             color: dimFontColor, fontSize: 14, height: 1.5, letterSpacing: 0),
         appbarTitle = const TextStyle(
-            color: Colors.white, fontWeight: FontWeight.w600, letterSpacing: 0),
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+          fontSize: 22,
+          letterSpacing: 0,
+        ),
         h100 = TextStyle(
             color: dimFontColor,
             fontWeight: FontWeight.w700,
@@ -202,7 +206,6 @@ class AppTypographyExtension extends ThemeExtension<AppTypographyExtension> {
     TextStyle? orderCustomerhead,
     TextStyle? orderCustomervalue,
     TextStyle? smallHead,
-
   }) {
     return AppTypographyExtension(
       ui: ui ?? this.ui,

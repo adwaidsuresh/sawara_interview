@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image_stack/image_stack.dart';
 import 'package:sawara_interview/core/constants/homepage/home_page_constants.dart';
+import 'package:sawara_interview/core/theme/theme_helper.dart';
 // import 'package:sawara_solutions/core/constants/homepage/home_page_constants.dart';
 
 class TrendingPeople extends ConsumerWidget {
@@ -14,68 +14,90 @@ class TrendingPeople extends ConsumerWidget {
       "asset/man2.png",
       "asset/man3.png",
       "asset/man4.png",
-      // 'assets/man5.png'
+      'asset/man2.png'
     ];
 
     return Container(
       width: 320,
-      height: 190,
+      height: 210,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.black),
+        border: Border.all(color: Colors.black45),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 15,
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(1),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey[600],
                 ),
-                const CircleAvatar(),
-                const SizedBox(
-                  width: 15,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Center(
+                    child: Icon(
+                      Icons.energy_savings_leaf_outlined,
+                      color: Colors.grey[600],
+                    ),
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(ref.watch(homepageConstantsProvider).txtAuthor),
-                    Text(ref.watch(homepageConstantsProvider).txtcount)
-                  ],
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(ref.watch(homepageConstantsProvider).txtAuthor),
+                  Text(ref.watch(homepageConstantsProvider).txtcount)
+                ],
+              ),
+            ],
           ),
           const Divider(
             color: Colors.black,
             thickness: .5,
-            endIndent: 15,
-            indent: 15,
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: ImageStack(
-              imageList: images,
-              totalCount: images.length,
-              imageRadius: 50,
-              imageCount: 5,
-              imageBorderWidth: 3,
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Stack(
+                children: [
+                  for (int i = 0; i < images.length; i++)
+                    Positioned(
+                      left: i * 30,
+                      child: CircleAvatar(
+                        radius: 24,
+                        backgroundImage: AssetImage(images[i]),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 200),
-            child: SizedBox(
-              height: 35,
-              child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text(ref.watch(homepageConstantsProvider).txtseemore)),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                backgroundColor: AppTheme.of(context).colors.btnPrimary,
+                foregroundColor: AppTheme.of(context).colors.txtInverse,
+                shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppTheme.of(context).spaces.space_150,
+                ),
+                minimumSize: const Size(0, 34),
+              ),
+              child: Text(
+                ref.watch(homepageConstantsProvider).txtseemore,
+              ),
             ),
           )
         ],

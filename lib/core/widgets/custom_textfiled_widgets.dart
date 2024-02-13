@@ -11,6 +11,7 @@ class CustomTextField extends ConsumerWidget {
   final TextEditingController? controller;
   final bool obscureText;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   const CustomTextField({
     super.key,
@@ -20,6 +21,7 @@ class CustomTextField extends ConsumerWidget {
     this.controller,
     this.validator,
     this.obscureText = false,
+    this.onChanged,
   });
 
   @override
@@ -36,7 +38,7 @@ class CustomTextField extends ConsumerWidget {
                 padding: EdgeInsets.only(bottom: spaces.space_100),
                 child: Text(
                   headText!,
-                  style: typography.smallHead,
+                  style: typography.h500,
                 ),
               )
             : const SizedBox(),
@@ -44,21 +46,27 @@ class CustomTextField extends ConsumerWidget {
           obscureText: obscureText,
           controller: controller,
           validator: validator,
+          cursorColor: colors.txtSubtle,
+          onChanged: onChanged,
           decoration: InputDecoration(
             prefixIcon: prifixIcon,
             hintText: hintText,
             contentPadding: EdgeInsets.symmetric(horizontal: spaces.space_200),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(spaces.space_125),
-              borderSide: BorderSide(width: 1, color: colors.btnPrimary),
+              borderSide: const BorderSide(width: 1, color: Colors.red),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(spaces.space_125),
+              borderSide: const BorderSide(width: 1, color: Colors.red),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(spaces.space_125),
-              borderSide: const BorderSide(width: 0.5),
+              borderSide: const BorderSide(width: 1),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(spaces.space_125),
-              borderSide: const BorderSide(width: 0.5),
+              borderSide: const BorderSide(width: 1),
             ),
           ),
         ),

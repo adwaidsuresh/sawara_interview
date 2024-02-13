@@ -10,20 +10,18 @@ part 'theme.g.dart';
 
 ThemeData _lightTheme = ThemeData(
   useMaterial3: true,
-  primaryColor: AppColorPalette.redLight,
+  primaryColor: Colors.blue,
   colorScheme: const ColorScheme.light(),
   dialogTheme: const DialogTheme(
       backgroundColor: Colors.white, surfaceTintColor: Colors.white),
   extensions: <ThemeExtension<dynamic>>[
     AppColors(
-      primary: AppColorPalette.redLight,
-      btnPrimary: AppColorPalette.red,
+      primary: Colors.blue,
+      btnPrimary: AppColorPalette.navyBlue,
       txtInverse: Colors.white,
-      imgBack: AppColorPalette.orangeLight,
       txtSubtle: AppColorPalette.black_240,
       backgroundLight: AppColorPalette.backgroundLight,
       behindImage: AppColorPalette.grey,
-      container: AppColorPalette.container,
     ),
     AppSpaceExtension.fromBaseSpace(8),
     AppTypographyExtension.fromColors(

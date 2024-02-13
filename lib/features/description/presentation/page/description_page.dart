@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 // import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sawara_interview/core/constants/homepage/home_page_constants.dart';
+import 'package:sawara_interview/core/theme/theme_helper.dart';
+import 'package:sawara_interview/core/widgets/bottom_navigation_bar_widget.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sawara_interview/core/constants/description/description_contants.dart';
 
 class Description extends ConsumerWidget {
@@ -10,11 +14,19 @@ class Description extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // final rating = ref.watch(ratingProvider).state;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: const Icon(Icons.arrow_back_ios_new),
-        title: Text(ref.watch(descriptionConstantsProvider).txtDescription),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
+        title: Text(
+          ref.watch(descriptionConstantsProvider).txtDescription,
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -31,15 +43,86 @@ class Description extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
-                    width: 400,
+                  SizedBox(
                     height: 320,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(
-                          image: AssetImage('asset/resort.png'),
-                          fit: BoxFit.fill),
-                    ),
+                    child: PageView(children: [
+                      Stack(
+                        children: [
+                          Container(
+                            width: 400,
+                            height: 320,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: const DecorationImage(
+                                  image: AssetImage('asset/resort.png'),
+                                  fit: BoxFit.fill),
+                            ),
+                          ),
+                          const Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 10,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.white70,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.white60,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.white54,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.white38,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: 400,
+                        height: 320,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              image: AssetImage('asset/resorts2.jpeg'),
+                              fit: BoxFit.fill),
+                        ),
+                      ),
+                      Container(
+                        width: 400,
+                        height: 320,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              image: AssetImage('asset/resorts3.jpeg'),
+                              fit: BoxFit.fill),
+                        ),
+                      ),
+                    ]),
                   ),
                   const SizedBox(
                     height: 5,
@@ -62,7 +145,11 @@ class Description extends ConsumerWidget {
                       const Icon(Icons.crop_free_outlined),
                       const Icon(Icons.star_border),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          {
+                            await Share.share('share');
+                          }
+                        },
                         icon: const Icon(Icons.share),
                       )
                     ],
@@ -104,11 +191,12 @@ class Description extends ConsumerWidget {
                   width: 100,
                   height: 20,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0x309E9E9E)),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xFFD9D9D9),
+                  ),
                   child: Center(
                     child: RatingBar.builder(
-                      initialRating: 0,
+                      initialRating: 3.2,
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
@@ -121,16 +209,30 @@ class Description extends ConsumerWidget {
                         Icons.star_outlined,
                         color: Colors.blue,
                       ),
-                      onRatingUpdate: (rating) {},
+                      unratedColor: Colors.white,
+                      onRatingUpdate: (rating) {
+                        // ref.read(ratingProvider).state = rating;
+                      },
                     ),
                   ),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  "3.2",
+                  style: AppTheme.of(context).typography.pBlockQuote.copyWith(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                      ),
                 )
               ],
             ),
             const SizedBox(
               height: 15,
             ),
-            Text(ref.watch(descriptionConstantsProvider).txtactorname),
+            Text(
+              ref.watch(descriptionConstantsProvider).txtactorname,
+              style: const TextStyle(fontWeight: FontWeight.w800),
+            ),
             const SizedBox(
               height: 8,
             ),
@@ -140,18 +242,60 @@ class Description extends ConsumerWidget {
             ),
             Row(
               children: [
-                Icon(Icons.watch_later_outlined),
-                Text(ref.watch(descriptionConstantsProvider).txttotalAverage)
+                const Icon(
+                  Icons.watch_later_outlined,
+                  color: Colors.black54,
+                ),
+                Text(ref.watch(descriptionConstantsProvider).txtduration,
+                    style: TextStyle(color: Colors.black54))
               ],
             ),
             const SizedBox(
               height: 8,
             ),
-            Text(ref.watch(descriptionConstantsProvider).txtabout),
-            Text(ref.watch(descriptionConstantsProvider).txtdescr)
+            Row(
+              children: [
+                const Icon(
+                  Icons.folder_open_rounded,
+                  color: Colors.black54,
+                ),
+                Text(ref.watch(descriptionConstantsProvider).txttotalAverage,
+                    style: TextStyle(color: Colors.black54))
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              ref.watch(descriptionConstantsProvider).txtabout,
+              style: const TextStyle(fontWeight: FontWeight.w800),
+            ),
+            SizedBox(
+              width: 420,
+              child: Text(
+                ref.watch(descriptionConstantsProvider).txtdescr,
+                style: AppTheme.of(context).typography.pDefault,
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Align(
+                    child: Text(
+                  ref.watch(homepageConstantsProvider).txtseemore,
+                  style: const TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.w600),
+                )),
+              ],
+            )
           ],
         ),
       ),
+      bottomNavigationBar: const BottomMavigationbar(),
     );
   }
 }
